@@ -1,0 +1,25 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net8.0</TargetFramework>
+    <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+    <DebugType>Embedded</DebugType>
+    <ImplicitUsings>Enable</ImplicitUsings>
+    <LangVersion>Latest</LangVersion>
+    <PublishSingleFile>true</PublishSingleFile>
+    <SelfContained>false</SelfContained>
+    <BinDir>c:\bin</BinDir>
+  </PropertyGroup>
+  <!--
+  <ItemGroup>
+    <PackageReference Include="Cumber" Version="0.5.0" />
+  </ItemGroup>
+-->
+  <ItemGroup />
+  <Target Name="PostPublish" AfterTargets="Publish">
+    <PropertyGroup>
+      <PublishedExe>$(PublishDir)$(ProjectName).exe</PublishedExe>
+    </PropertyGroup>
+    <Exec Command="echo copying $(PublishedExe) to $(BinDir) &amp;&amp; copy $(PublishedExe) $(BinDir)" />
+  </Target>
+</Project>
